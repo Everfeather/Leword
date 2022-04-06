@@ -10,7 +10,7 @@ ins [guess colors] (insert results of guess)
 
 contains [word] (see if Leword still has this word in their word list)
 
-validate [word] (see for yourself if a word is valid on Lewords eyes)
+validate [word] (see for yourself if a word is valid in Lewords eyes)
 
 stop (for when you're done)
 
