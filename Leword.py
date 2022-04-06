@@ -1,12 +1,24 @@
 from Letter import Letter
 from Word import Word
 from State import State
+from wordle import Wordle
 
 
 class Leword:
 
     def __init__(self):
 
+        alphabet = "abcdefghijklmnopqrstuvwxyz"
+        self.letters = {}
+        for char in alphabet:
+            self.letters.update({char: Letter(char)})
+
+        self.words = {}
+        self.init_words()
+        self.init_letters()
+        self.cur_guess = ""
+
+    def reset(self):
         alphabet = "abcdefghijklmnopqrstuvwxyz"
         self.letters = {}
         for char in alphabet:
@@ -49,7 +61,7 @@ class Leword:
             for char in word_lower:
                 if self.letters.get(char).states[count] == State.GRAY or \
                         self.letters.get(char).states[count] == State.YELLOW:
-                    print(word_lower)
+                    # print(word_lower)
                     self.words.pop(word_lower)
                     break
 
@@ -138,11 +150,25 @@ class Leword:
             else:
                 print("Invalid command\n")
 
+    def auto_run(self, num_games):
+        game = Wordle()
+        for i in range(num_games):
+            game.reset()
+            while not game.game_over:
+                guess = self.find_best_word().word
+                #print("next guess: " + guess)
+                colors = game.guess(guess)
+                #print(colors)
+                self.process_guess(colors)
+                self.validate_words()
+                self.init_letters()
+            self.reset()
+        game.print_stats()
+
 
 def main():
     bot = Leword()
-
-    bot.run()
+    bot.auto_run(50)
 
 
 main()
