@@ -23,6 +23,8 @@ extract all .py & .txt files to the same folder.
 run leword.py
 (optional) run wordle.py
 
+currently, the default mode Leword will be in is auto-run. To change it into manual input you must
+go to line 171 and change 'bot.auto_run()' to 'bot.run()'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 How does Leword decide which words to guess?
